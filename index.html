@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<!-- Google Analytics 4 (consent-gated) — loads only after cookie consent. -->
+<!-- Google Analytics 4 (consent-gated), loads only after cookie consent. -->
 <script>
 (function(){
   var GA_ID = 'G-RSR83B38QN';
@@ -26,14 +26,14 @@
 })();
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inglês pra marketing — vagas internacionais | Watermouse Academy</title>
+<title>Inglês pra marketing, vagas internacionais | Watermouse Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://academy.thewatermouse.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Watermouse">
 <meta property="og:title" content="Inglês pra carreira internacional em marketing | Watermouse Academy">
-<meta property="og:description" content="Aulas de conversação em inglês pra profissionais de marketing que buscam vagas internacionais — entrevistas, reuniões e vocabulário da área. Com o Digo, que trabalha 100% em inglês com empresas americanas. Lista de espera aberta.">
+<meta property="og:description" content="Aulas de conversação em inglês pra profissionais de marketing que buscam vagas internacionais, entrevistas, reuniões e vocabulário da área. Com o Digo, que trabalha 100% em inglês com empresas americanas. Lista de espera aberta.">
 <meta property="og:url" content="https://academy.thewatermouse.com/">
 <meta property="og:image" content="https://academy.thewatermouse.com/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -41,9 +41,9 @@
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Inglês pra carreira internacional em marketing | Watermouse Academy">
-<meta name="twitter:description" content="Aulas de conversação em inglês pra profissionais de marketing que buscam vagas internacionais — entrevistas, reuniões e vocabulário da área. Com o Digo, que trabalha 100% em inglês com empresas americanas. Lista de espera aberta.">
+<meta name="twitter:description" content="Aulas de conversação em inglês pra profissionais de marketing que buscam vagas internacionais, entrevistas, reuniões e vocabulário da área. Com o Digo, que trabalha 100% em inglês com empresas americanas. Lista de espera aberta.">
 <meta name="twitter:image" content="https://academy.thewatermouse.com/og-image.png">
-<meta name="description" content="Aulas de conversação em inglês pra profissionais de marketing que buscam vagas internacionais — entrevistas, reuniões e vocabulário da área. Com o Digo, que trabalha 100% em inglês com empresas americanas. Lista de espera aberta.">
+<meta name="description" content="Aulas de conversação em inglês pra profissionais de marketing que buscam vagas internacionais, entrevistas, reuniões e vocabulário da área. Com o Digo, que trabalha 100% em inglês com empresas americanas. Lista de espera aberta.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -250,7 +250,7 @@
         <div class="form-intro">
           <div class="label">Lista de espera</div>
           <h2>Quer ser avisado primeiro?</h2>
-          <p>Entra na lista e eu te aviso quando abrir as primeiras vagas — com condição de fundador pra quem chegou cedo.</p>
+          <p>Entra na lista e eu te aviso quando abrir as primeiras vagas, com condição de fundador pra quem chegou cedo.</p>
         </div>
         <div>
           <div class="form-status" id="form-status" role="alert"></div>
@@ -260,9 +260,9 @@
             <div class="field"><label for="f-interesse">Como está seu inglês hoje? *</label>
               <select id="f-interesse" name="interesse" required>
                 <option value="" disabled selected>Selecione</option>
-                <option value="Básico">Básico — travo pra falar</option>
-                <option value="Intermediário">Intermediário — me viro, mas sem confiança</option>
-                <option value="Avançado">Avançado — quero polir pra entrevistas</option>
+                <option value="Básico">Básico, travo pra falar</option>
+                <option value="Intermediário">Intermediário, me viro, mas sem confiança</option>
+                <option value="Avançado">Avançado, quero polir pra entrevistas</option>
               </select>
             </div>
             <div class="hp" aria-hidden="true"><label>Não preencha<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
@@ -312,7 +312,7 @@
     var form=document.getElementById('academy-form'),st=document.getElementById('form-status'),btn=document.getElementById('form-submit'),ok=document.getElementById('form-success');
     function show(t,m){st.className='form-status '+t;st.textContent=m;}
     function good(){form.style.display='none';st.className='form-status';ok.classList.add('show');}
-    function mailfb(d){var b='Nome: '+d.nome+'\nE-mail: '+d.email+'\nNível de inglês: '+d.interesse+'\n';window.location.href='mailto:'+FALLBACK_EMAIL+'?subject='+encodeURIComponent('Lista de espera Academy — '+d.nome)+'&body='+encodeURIComponent(b);}
+    function mailfb(d){var b='Nome: '+d.nome+'\nE-mail: '+d.email+'\nNível de inglês: '+d.interesse+'\n';window.location.href='mailto:'+FALLBACK_EMAIL+'?subject='+encodeURIComponent('Lista de espera Academy, '+d.nome)+'&body='+encodeURIComponent(b);}
     form.addEventListener('submit',function(e){
       e.preventDefault();st.className='form-status';
       if(form._honey&&form._honey.value){good();return;}
@@ -320,7 +320,7 @@
       if(!d.nome||!d.interesse){show('err','Preenche os campos obrigatórios.');return;}
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)){show('err','Confere o e-mail.');return;}
       btn.disabled=true;btn.textContent='Enviando…';
-      var fd=new FormData(form);fd.append('_subject','Nova inscrição — Watermouse Academy (lista de espera)');fd.append('_template','table');fd.append('_captcha','false');
+      var fd=new FormData(form);fd.append('_subject','Nova inscrição, Watermouse Academy (lista de espera)');fd.append('_template','table');fd.append('_captcha','false');
       fetch(FORMSUBMIT_ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:fd})
         .then(function(r){return r.json().catch(function(){return{};});})
         .then(function(j){if(j&&(j.success==='true'||j.success===true))good();else throw 0;})
