@@ -163,8 +163,10 @@
   .form-intro p{font-size:15px;font-weight:300;line-height:1.7;color:rgba(28,43,38,0.62);}
   .field{margin-bottom:16px;}
   .field label{display:block;font-size:12px;font-weight:500;color:var(--ink);margin-bottom:6px;}
-  .field input,.field select{width:100%;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:300;color:var(--ink);background:var(--white);border:1.5px solid rgba(28,43,38,0.12);border-radius:12px;padding:13px 15px;-webkit-appearance:none;appearance:none;}
-  .field input:focus,.field select:focus{outline:none;border-color:var(--sage);}
+  .field input,.field select,.field textarea{width:100%;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:300;color:var(--ink);background:var(--white);border:1.5px solid rgba(28,43,38,0.12);border-radius:12px;padding:13px 15px;-webkit-appearance:none;appearance:none;}
+  .field textarea{resize:vertical;min-height:84px;line-height:1.5;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--sage);}
+  .form-status.err a{color:#8A3A2C;font-weight:600;}
   .hp{position:absolute;left:-9999px;}
   .submit{width:100%;background:var(--ink);color:#fff;border:none;cursor:pointer;padding:15px;border-radius:100px;font-family:inherit;font-size:15px;font-weight:500;margin-top:4px;}
   .submit:hover{background:#000;}
@@ -265,6 +267,8 @@
                 <option value="Avançado">Avançado, quero polir pra entrevistas</option>
               </select>
             </div>
+            <div class="field"><label for="f-telefone">WhatsApp / Telefone</label><input type="tel" id="f-telefone" name="telefone" placeholder="(11) 90000-0000" autocomplete="tel"></div>
+            <div class="field"><label for="f-mensagem">Alguma mensagem? <span style="font-weight:300;color:rgba(28,43,38,0.45)">(opcional)</span></label><textarea id="f-mensagem" name="mensagem" rows="3" placeholder="Conta rapidinho seu objetivo com o inglês, prazo, horários…"></textarea></div>
             <div class="hp" aria-hidden="true"><label>Não preencha<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
             <button type="submit" class="submit" id="form-submit">Entrar na lista de espera</button>
             <p class="fine">Ao enviar, você concorda com a nossa <a href="https://thewatermouse.com/privacidade/">política de privacidade</a>.</p>
@@ -312,11 +316,11 @@
     var form=document.getElementById('academy-form'),st=document.getElementById('form-status'),btn=document.getElementById('form-submit'),ok=document.getElementById('form-success');
     function show(t,m){st.className='form-status '+t;st.textContent=m;}
     function good(){form.style.display='none';st.className='form-status';ok.classList.add('show');}
-    function mailfb(d){var b='Nome: '+d.nome+'\nE-mail: '+d.email+'\nNível de inglês: '+d.interesse+'\n';window.location.href='mailto:'+FALLBACK_EMAIL+'?subject='+encodeURIComponent('Lista de espera Academy, '+d.nome)+'&body='+encodeURIComponent(b);}
+    function mailHref(d){var b='Nome: '+d.nome+'\nE-mail: '+d.email+'\nWhatsApp/Telefone: '+(d.telefone||'-')+'\nNível de inglês: '+d.interesse+'\nMensagem: '+(d.mensagem||'-')+'\n';return 'mailto:'+FALLBACK_EMAIL+'?subject='+encodeURIComponent('Lista de espera Academy, '+d.nome)+'&body='+encodeURIComponent(b);}
     form.addEventListener('submit',function(e){
       e.preventDefault();st.className='form-status';
       if(form._honey&&form._honey.value){good();return;}
-      var d={nome:form.nome.value.trim(),email:form.email.value.trim(),interesse:form.interesse.value};
+      var d={nome:form.nome.value.trim(),email:form.email.value.trim(),interesse:form.interesse.value,telefone:form.telefone.value.trim(),mensagem:form.mensagem.value.trim()};
       if(!d.nome||!d.interesse){show('err','Preenche os campos obrigatórios.');return;}
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)){show('err','Confere o e-mail.');return;}
       btn.disabled=true;btn.textContent='Enviando…';
@@ -324,7 +328,7 @@
       fetch(FORMSUBMIT_ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:fd})
         .then(function(r){return r.json().catch(function(){return{};});})
         .then(function(j){if(j&&(j.success==='true'||j.success===true))good();else throw 0;})
-        .catch(function(){show('ok','Abrindo seu e-mail pra concluir…');mailfb(d);})
+        .catch(function(){st.className='form-status err';st.innerHTML='Não consegui enviar agora. Tenta de novo em instantes, ou <a href="'+mailHref(d)+'">envie por e-mail aqui</a>.';})
         .finally(function(){btn.disabled=false;btn.textContent='Entrar na lista de espera';});
     });
   })();
