@@ -135,10 +135,10 @@
   .wrap{max-width:1000px;margin:0 auto;padding:0 32px;width:100%;}
   nav{padding:26px 0;}
   .nav-inner{max-width:1000px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;}
-  .logo{display:flex;align-items:center;gap:10px;}
-  .logo-word{font-family:'Fraunces',serif;font-size:21px;font-weight:300;letter-spacing:0.04em;}
-  .logo-tag{font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--sage-light);border-left:1px solid rgba(250,248,245,0.2);padding-left:9px;}
-  .nav-cta{background:var(--sage);color:#fff!important;padding:10px 20px;border-radius:100px;font-size:13px;font-weight:500;}
+  .logo{display:flex;align-items:center;gap:10px;min-width:0;}
+  .logo-word{font-family:'Fraunces',serif;font-size:21px;font-weight:300;letter-spacing:0.04em;white-space:nowrap;}
+  .logo-tag{font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--sage-light);border-left:1px solid rgba(250,248,245,0.2);padding-left:9px;white-space:nowrap;}
+  .nav-cta{background:var(--sage);color:#fff!important;padding:10px 20px;border-radius:100px;font-size:13px;font-weight:500;white-space:nowrap;flex-shrink:0;}
   header.hero{padding:56px 0 40px;}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:500;letter-spacing:0.06em;color:var(--sage-light);margin-bottom:22px;}
   .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--warm-deep);}
@@ -191,6 +191,18 @@
   .qa-a{font-size:15px;font-weight:300;line-height:1.72;color:rgba(250,248,245,0.68);}
   .qa-a strong{color:var(--off-white);font-weight:500;}
   @media(max-width:640px){.qa-q{font-size:17px;}}
+  @media(max-width:560px){
+    nav{padding:18px 0;}
+    .nav-inner{padding:0 20px;gap:12px;}
+    .logo{gap:7px;}
+    .logo-word{font-size:16px;}
+    .logo-tag{font-size:9.5px;padding-left:7px;letter-spacing:0.1em;}
+    .nav-cta{padding:9px 15px;font-size:12px;}
+  }
+  @media(max-width:380px){
+    .logo-tag{display:none;}
+    .logo-word{font-size:15px;}
+  }
 </style>
 </head>
 <body>
