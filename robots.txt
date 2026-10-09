@@ -27,4 +27,4 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-Sitemap: https://academy.thewatermouse.com/sitemap.xml
+Sitemap: https://remote.thewatermouse.com/sitemap.xml
