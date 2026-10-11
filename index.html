@@ -319,6 +319,10 @@
             <div class="field"><label for="f-telefone">WhatsApp / Telefone</label><input type="tel" id="f-telefone" name="telefone" placeholder="(11) 90000-0000" autocomplete="tel"></div>
             <div class="field"><label for="f-mensagem">Alguma mensagem? <span style="font-weight:300;color:rgba(28,43,38,0.45)">(opcional)</span></label><textarea id="f-mensagem" name="mensagem" rows="3" placeholder="Conta rapidinho seu objetivo com o inglês, prazo, horários…"></textarea></div>
             <div class="hp" aria-hidden="true"><label>Não preencha<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+            <label class="consent-check" style="display:flex;gap:10px;align-items:flex-start;font-size:13px;font-weight:300;line-height:1.5;margin:2px 0 14px;cursor:pointer;color:rgba(28,43,38,0.72);">
+              <input type="checkbox" id="f-consent" style="margin-top:3px;flex-shrink:0;width:16px;height:16px;accent-color:#4A7C6F;">
+              <span>Quero receber novidades, conteúdos e ofertas por e-mail, SMS e WhatsApp, e autorizo o uso dos meus dados para anúncios, conforme a <a href="https://thewatermouse.com/privacidade/">política de privacidade</a>.</span>
+            </label>
             <button type="submit" class="submit" id="form-submit">Entrar na lista de espera</button>
             <p class="fine">Ao enviar, você concorda com a nossa <a href="https://thewatermouse.com/privacidade/">política de privacidade</a>.</p>
           </form>
@@ -340,7 +344,7 @@
 </footer>
 
 <div id="wm-cookie" class="wm-cookie" role="dialog" aria-label="Aviso de cookies" hidden>
-  <span class="wm-cookie-text">Usamos cookies essenciais pro site funcionar e, com seu consentimento, medição de audiência. Veja a <a href="https://thewatermouse.com/privacidade/">Política de privacidade</a>.</span>
+  <span class="wm-cookie-text">Usamos cookies essenciais pro site funcionar e, com seu consentimento, cookies de medição e de marketing (incluindo pixels de Meta, Google e TikTok para anúncios). Veja a <a href="https://thewatermouse.com/privacidade/">Política de privacidade</a>.</span>
   <span class="wm-cookie-actions">
     <button type="button" class="wm-cookie-btn ghost" onclick="wmCookie(false)">Recusar</button>
     <button type="button" class="wm-cookie-btn solid" onclick="wmCookie(true)">Aceitar</button>
@@ -373,7 +377,7 @@
       if(!d.nome||!d.interesse){show('err','Preenche os campos obrigatórios.');return;}
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)){show('err','Confere o e-mail.');return;}
       btn.disabled=true;btn.textContent='Enviando…';
-      var fd=new FormData(form);fd.append('_subject','Nova inscrição, inglês para vagas remotas (lista de espera)');fd.append('_template','table');fd.append('_captcha','false');
+      var fd=new FormData(form);fd.append('_subject','Nova inscrição, inglês para vagas remotas (lista de espera)');fd.append('_template','table');fd.append('_captcha','false');var _c=document.getElementById('f-consent');fd.append('Consentimento marketing',_c&&_c.checked?'Sim':'Não');
       fetch(FORMSUBMIT_ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:fd})
         .then(function(r){return r.json().catch(function(){return{};});})
         .then(function(j){if(j&&(j.success==='true'||j.success===true))good();else throw 0;})
@@ -382,5 +386,32 @@
     });
   })();
 </script>
+<!-- Watermouse marketing pixels (consent-gated). Preencha os IDs para ativar; vazio = desligado. -->
+<script>
+(function(){
+  var WM_PIXELS = { meta:"", tiktok:"", googleAds:"" }; // ex.: meta:"123456789012345", tiktok:"CXXXXXXXXXXXXXXXXXX", googleAds:"AW-123456789"
+  window.wmLoadMarketing = function(){
+    if (window.__wmMkt) return; window.__wmMkt = true;
+    if (WM_PIXELS.meta){
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      window.fbq('init',WM_PIXELS.meta); window.fbq('track','PageView');
+    }
+    if (WM_PIXELS.tiktok){
+      !function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];ttq.setAndDefer=function(e,n){e[n]=function(){e.push([n].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(e){for(var n=ttq._i[e]||[],i=0;i<ttq.methods.length;i++)ttq.setAndDefer(n,ttq.methods[i]);return n};ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=r;ttq._t=ttq._t||{};ttq._t[e]=+new Date;ttq._o=ttq._o||{};ttq._o[e]=n||{};var s=d.createElement("script");s.type="text/javascript";s.async=!0;s.src=r+"?sdkid="+e+"&lib="+t;var a=d.getElementsByTagName("script")[0];a.parentNode.insertBefore(s,a)};ttq.load(WM_PIXELS.tiktok);ttq.page()}(window,document,'ttq');
+    }
+    if (WM_PIXELS.googleAds){
+      var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id='+WM_PIXELS.googleAds;document.head.appendChild(g);
+      window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};window.gtag('js',new Date());window.gtag('config',WM_PIXELS.googleAds);
+    }
+  };
+  function fire(){ if(WM_PIXELS.meta||WM_PIXELS.tiktok||WM_PIXELS.googleAds) window.wmLoadMarketing(); }
+  document.addEventListener('DOMContentLoaded',function(){
+    try{ if(localStorage.getItem('wm_cookie_consent')==='accepted') fire(); }catch(e){}
+    var orig=window.wmCookie;
+    if(typeof orig==='function'){ window.wmCookie=function(a){ orig.apply(this,arguments); if(a) fire(); }; }
+  });
+})();
+</script>
+
 </body>
 </html>
